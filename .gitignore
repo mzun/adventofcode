@@ -1,3 +1,7 @@
+Release
+obj
+*.depend
+
 # Compiled Object files
 *.slo
 *.lo

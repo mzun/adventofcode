@@ -51,9 +51,37 @@ public:
         return all - printed;
     }
 
-    string encodeString(string s)
+    int run2()
     {
+        int all = 0;
+        int saved = 0;
+        for(auto&s : data)
+        {
+            all += s.length();
+            saved += encodeString(s);
 
+            cout << s << " | saved: " << encodeString(s) << " len: " << s.length() << endl;
+        }
+
+        return saved - all;
+    }
+
+    int encodeString(string s)
+    {
+        int saved = 2;
+        for(int i = 0; i < s.length(); i++)
+        {
+            if (s[i] == '\\')
+            {
+                ++saved;
+            }
+            else if (s[i] == '\"')
+            {
+                ++saved;
+            }
+            ++saved;
+        }
+        return saved;
     }
 
     int parseString(string s)
@@ -114,7 +142,8 @@ int main()
     //string s = "\"\\x27\"";
     //cout << s <<" result: " << counter.parseString(s) << " length: " << s.length() << endl;
 
-    cout << "Result: " << counter.run() << endl;
+    cout << "Result parse: " << counter.run() << endl;
+    cout << "Result encode: " << counter.run2() << endl;
 
     return 0;
 }
